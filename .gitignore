@@ -2,3 +2,6 @@ node_modules/
 dist/
 .DS_Store
 build.sh
+AppleDeveloperID.*
+*.cer
+*.p8

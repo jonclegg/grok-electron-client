@@ -12,6 +12,24 @@ function createWindow() {
     }
   });
 
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    if (url.startsWith('https://grok.com') || url.startsWith('https://x.com')) {
+      return { action: 'allow' };
+    }
+    return { action: 'deny' };
+  });
+
+  mainWindow.webContents.on('did-create-window', (childWindow) => {
+    childWindow.webContents.setWindowOpenHandler(({ url }) => {
+      if (url.startsWith('https://grok.com') || url.startsWith('https://x.com')) {
+        mainWindow.loadURL(url);
+        childWindow.close();
+        return { action: 'deny' };
+      }
+      return { action: 'deny' };
+    });
+  });
+
   mainWindow.loadURL('https://grok.com');
 }
 
