@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export APPLE_ID="your-apple-id@email.com"
+export APPLE_ID_PASSWORD="your-app-specific-password"
+export APPLE_TEAM_ID="YOUR_TEAM_ID"
+
+npm run build
+
+
+
