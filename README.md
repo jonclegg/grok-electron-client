@@ -6,7 +6,7 @@ A native macOS desktop wrapper for Grok (xAI's conversational AI) built with Ele
 
 Download the latest release for your Mac:
 
-- **Apple Silicon (M1/M2/M3/M4)**: [Grok Client-1.0.0-arm64.dmg](https://github.com/jonclegg/grok-electron-client/releases/download/v1.0.0/Grok.Client-1.0.0-arm64.dmg)
+- **Apple Silicon (M1/M2/M3/M4)**: [Grok Client-1.0.1-arm64.dmg](https://github.com/jonclegg/grok-electron-client/releases/download/v1.0.1/Grok.Client-1.0.1-arm64.dmg)
 
 ## Installation
 

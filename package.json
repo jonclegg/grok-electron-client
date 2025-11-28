@@ -1,6 +1,6 @@
 {
   "name": "grok-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Electron wrapper for grok.com",
   "main": "main.js",
   "scripts": {

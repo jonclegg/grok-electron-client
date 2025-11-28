@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, shell } = require('electron');
 const path = require('path');
 
 function createWindow() {
@@ -16,6 +16,7 @@ function createWindow() {
     if (url.startsWith('https://grok.com') || url.startsWith('https://x.com')) {
       return { action: 'allow' };
     }
+    shell.openExternal(url);
     return { action: 'deny' };
   });
 
@@ -26,8 +27,16 @@ function createWindow() {
         childWindow.close();
         return { action: 'deny' };
       }
+      shell.openExternal(url);
       return { action: 'deny' };
     });
+  });
+
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    if (!url.startsWith('https://grok.com') && !url.startsWith('https://x.com')) {
+      event.preventDefault();
+      shell.openExternal(url);
+    }
   });
 
   mainWindow.loadURL('https://grok.com');
