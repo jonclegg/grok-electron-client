@@ -1,6 +1,16 @@
 const { app, BrowserWindow, shell } = require('electron');
 const path = require('path');
 
+const ALLOWED_ORIGINS = [
+  'https://grok.com',
+  'https://x.com',
+  'https://accounts.x.ai',
+];
+
+function isAllowedUrl(url) {
+  return ALLOWED_ORIGINS.some(origin => url.startsWith(origin));
+}
+
 function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1400,
@@ -13,7 +23,7 @@ function createWindow() {
   });
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-    if (url.startsWith('https://grok.com') || url.startsWith('https://x.com')) {
+    if (isAllowedUrl(url)) {
       return { action: 'allow' };
     }
     shell.openExternal(url);
@@ -22,7 +32,7 @@ function createWindow() {
 
   mainWindow.webContents.on('did-create-window', (childWindow) => {
     childWindow.webContents.setWindowOpenHandler(({ url }) => {
-      if (url.startsWith('https://grok.com') || url.startsWith('https://x.com')) {
+      if (isAllowedUrl(url)) {
         mainWindow.loadURL(url);
         childWindow.close();
         return { action: 'deny' };
@@ -33,7 +43,7 @@ function createWindow() {
   });
 
   mainWindow.webContents.on('will-navigate', (event, url) => {
-    if (!url.startsWith('https://grok.com') && !url.startsWith('https://x.com')) {
+    if (!isAllowedUrl(url)) {
       event.preventDefault();
       shell.openExternal(url);
     }

@@ -1,5 +1,9 @@
 # Release Notes
 
+## v1.0.2
+
+- Fixed login flow by allowing accounts.x.ai in the app so authentication stays in-window
+
 ## v1.0.1
 
 - Fixed external links opening in the default browser instead of within the app
